@@ -25,6 +25,9 @@ http.createServer((req, res) => {
   if (url === '/') {
     content = fs.readFileSync(`${__dirname}/index/index.html`)
   } else {
+    if (url === '/img.png') {
+      // res.setHeader('Cache-Control', 'max-age=10')
+    }
     if (url === '/index.css') {
       const info = fs.statSync(`${__dirname}/index${url}`)
 
@@ -52,9 +55,6 @@ http.createServer((req, res) => {
         res.setHeader('Cache-Control', 'no-cache')
         res.setHeader('ETag', hash)
       }
-    }
-    if (url === '/img.png') {
-      res.setHeader('Cache-Control', 'max-age=10')
     }
 
     content = fs.readFileSync(`${__dirname}/index${url}`)
