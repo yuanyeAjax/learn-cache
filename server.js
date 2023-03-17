@@ -25,8 +25,8 @@ http.createServer((req, res) => {
   if (url === '/') {
     content = fs.readFileSync(`${__dirname}/index/index.html`)
   } else {
-    if (url === '/img.png') {
-      // res.setHeader('Cache-Control', 'max-age=10')
+    if (url === '/img.png' || url === '/head.css') {
+      res.setHeader('Cache-Control', 'max-age=10')
     }
     if (url === '/index.css') {
       const info = fs.statSync(`${__dirname}/index${url}`)
